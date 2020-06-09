@@ -17,32 +17,35 @@ from shadow.modules.helper_funcs.chat_status import is_user_admin
 from shadow.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hi {}, my name is {}! 
-I am an Anime themed group management bot.
-To add me to your group click ["HERE"](t.me/SaitamaRobot?startgroup=botstart)
-You can find my list of available commands with /help.
 
-[Saitama's Repo](github.com/AnimeKaizoku/SaitamaRobot) 
-See [Basic Configuration Checklist](t.me/OnePunchUpdates/29) on how to secure your group.
-The support group chat is at {}.
+hii my name is Ｓｈａｄｏｗ 😁
+
+i can manage your telegram groups 😎  
+To add me to your group click [𝗵𝗲𝗿𝗲](t.me/Mr_Gen3ral_bot?startgroup=botstart)
+
+You can find my list of available commands with /help
+
+conatact my [𝗼𝘄𝗻𝗲𝗿](t.me/kannappan04) 🕵️‍♂️
 """
 
 HELP_STRINGS = """
+╔----------+
+     ╔══╦╗────╔╗
+     ║══╣╚╦═╗╔╝╠═╦╦╦╗
+     ╠══║║║╬╚╣╬║╬║║║║
+     ╚══╩╩╩══╩═╩═╩══╝
+-------------------------+
+
 Hey there! My name is *{}*.
 I'm a Hero For Fun and help admins manage their groups with One Punch! Have a look at the following for an idea of some of \
 the things I can help you with.
 
 *Main* commands available:
- - /start: start the bot
- - /help: PM's you this message.
- - /help <module name>: PM's you info about that module.
- - /donate: information about how to donate!
- - /settings:
-   - in PM: will send you your settings for all supported modules.
-   - in a group: will redirect you to pm, with all that chat's settings.
+ ❀ /start: start the bot
+ ❀ /help: PM's you this message.
+ ❀ /help <module name>: PM's you info about that module.
+ ❀ /donate: information about how to donate!
 
-
-{}
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
