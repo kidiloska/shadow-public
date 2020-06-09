@@ -21,7 +21,7 @@ PM_START_TEXT = """
 hii my name is Ｓｈａｄｏｗ 😁
 
 i can manage your telegram groups 😎  
-To add me to your group click [𝗵𝗲𝗿𝗲](t.me/Mr_Gen3ral_bot?startgroup=botstart)
+To add me to your group click [𝗵𝗲𝗿𝗲](t.me/Mr_Gen3ralbot?startgroup=botstart)
 
 You can find my list of available commands with /help
 
