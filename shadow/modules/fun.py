@@ -16,6 +16,12 @@ from shadow.modules.helper_funcs.extraction import extract_user
 @run_async
 def runs(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(fun_strings.RUN_STRINGS))
+    
+@run_async
+def dark(bot: Bot, update: Update):
+    bot.sendChatAction(update.effective_chat.id, "typing")
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.DARK_STRINGS))
 
 
 @run_async
@@ -168,6 +174,7 @@ def table(bot: Bot, update: Update):
 __help__ = """
  • `/runs`*:* reply a random string from an array of replies.
  • `/slap`*:* slap a user, or get slapped if not a reply.
+ • `/Dark`*:* angry reply.
  • `/shrug`*:* get shrug XD.
  • `/table`*:* get flip/unflip :v.
  • `/decide`*:* Randomly answers yes/no/maybe
@@ -178,6 +185,7 @@ __help__ = """
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
+DARK_HANDLER = DisableAbleCommandHandler("dark", dark)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
 ROLL_HANDLER = DisableAbleCommandHandler("roll", roll)
 TOSS_HANDLER = DisableAbleCommandHandler("toss", toss)
@@ -188,6 +196,7 @@ DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
 dispatcher.add_handler(RUNS_HANDLER)
+dispatcher.add_handler(DARK_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
 dispatcher.add_handler(ROLL_HANDLER)
 dispatcher.add_handler(TOSS_HANDLER)
@@ -199,6 +208,6 @@ dispatcher.add_handler(TABLE_HANDLER)
 
 
 __mod_name__ = "Fun"
-__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
-__handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
+__command_list__ = ["runs", "dark", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
+__handlers__ = [RUNS_HANDLER, DARK_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
                 DECIDE_HANDLER, TABLE_HANDLER]
