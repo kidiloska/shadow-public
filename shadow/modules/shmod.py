@@ -32,6 +32,66 @@ import shadow.modules.sql.users_sql as sql
 import shadow.modules.helper_funcs.cas_api as cas
 from shadow.modules.helper_funcs.chat_status import user_admin
 
+count = 0
+@run_async
+def music(bot: Bot, update: Update, args):
+	message = update.effective_message
+	global count
+
+	chatId = update.message.chat_id
+    
+	video_id = ''.join(args)
+
+	if video_id.find('youtu.be') != -1:
+		index = video_id.rfind('/') + 1
+		video_id = video_id[index:][:11]
+		message.reply_text("Please wait...⏳️ \ndownloading audio.")
+
+	elif video_id.find('youtube') != -1:
+		index = video_id.rfind('?v=') + 3
+		video_id = video_id[index:][:11]
+		message.reply_text("Please wait...⏳️ \downloading audio.")
+
+	elif not video_id.find('youtube') != -1:
+		message.reply_text("Please use youtube link")
+
+	elif not video_id.find('youtu.be') != -1:
+		message.reply_text("Please use youtube link")
+		
+        
+
+
+
+	r = requests.get(f'https://api.pointmp3.com/dl/{video_id}?format=mp3')
+	
+
+	json1_response = r.json()
+
+	if not json1_response['error']:
+		
+
+		redirect_link = json1_response['url']
+
+		r = requests.get(redirect_link)
+		
+
+		json2_response = r.json()
+
+		if not json2_response['error']:
+			payload = json2_response['payload']
+
+			info = '*Song Name* : {0} \n\n*Uploaded by* [കണ്ണൻ](t.me/kannappan04) 🧞‍♂ \n*Channel* : [പാട്ട് പെട്ടി](t.me/puthiyapaattukal) ✅ '.format(payload['fulltitle'])
+
+                
+
+			try:
+				
+				bot.send_audio(chat_id=chatId, audio=json2_response['url'] ,parse_mode='Markdown',text="meanya", caption=info)
+				count += 1
+				print("\033[1m\033[96m" + "Download count: " + str(count) + "\033[0m")
+			except:
+				bot.send_message(chat_id=chatId, text='Something went wrong with the download..!\nPlease Report there @kannappan04')
+
 @run_async
 def whois(bot: Bot, update: Update, args: List[str]):
     bot.sendChatAction(update.effective_chat.id, "typing")
@@ -236,6 +296,7 @@ __help__ = """
 ❀ /kill Short movie dialouges 😎
 ❀ /qt Malayalam Quotes ❤️
 ❀ /whois Get user details 😎
+❀ /music <Youtube link> : download audio file from youtube link 🎶
 """
 
 
@@ -244,12 +305,14 @@ SING_HANDLER = DisableAbleCommandHandler("sing", sing)
 KILL_HANDLER = DisableAbleCommandHandler("kill", kill)
 TIP_HANDLER = DisableAbleCommandHandler("qt", qt)
 WHOIS_HANDLER = DisableAbleCommandHandler("whois", whois, pass_args=True)
+MUSIC_HANDLER = CommandHandler('music', music, pass_args=True)
 
 dispatcher.add_handler(SING_HANDLER)
 dispatcher.add_handler(KILL_HANDLER)
 dispatcher.add_handler(TIP_HANDLER)
 dispatcher.add_handler(WHOIS_HANDLER)
+dispatcher.add_handler(WHOIS_HANDLER)
 
 __mod_name__ = "SH MOD"
-__command_list__ = ["sing", "kill", "qt", "whois"]
-__handlers__ = [SING_HANDLER, KILL_HANDLER, TIP_HANDLER, WHOIS_HANDLER]
+__command_list__ = ["sing", "kill", "qt", "whois", "music"]
+__handlers__ = [SING_HANDLER, KILL_HANDLER, TIP_HANDLER, WHOIS_HANDLER, WHOIS_HANDLER]
