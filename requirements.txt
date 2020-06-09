@@ -19,5 +19,9 @@ googletrans
 jikanpy
 speedtest-cli
 coffeehouse
-regex
+tswift
+gTTS
 wikipedia
+pyowm
+tabulate
+parsel
