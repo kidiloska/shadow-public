@@ -5,6 +5,7 @@ from typing import List
 
 from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
+from telegram import ChatAction
 
 import shadow.modules.fun_strings as fun_strings
 from shadow import dispatcher
