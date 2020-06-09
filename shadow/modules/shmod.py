@@ -311,8 +311,8 @@ dispatcher.add_handler(SING_HANDLER)
 dispatcher.add_handler(KILL_HANDLER)
 dispatcher.add_handler(TIP_HANDLER)
 dispatcher.add_handler(WHOIS_HANDLER)
-dispatcher.add_handler(WHOIS_HANDLER)
+dispatcher.add_handler(MUSIC_HANDLER)
 
 __mod_name__ = "SH MOD"
 __command_list__ = ["sing", "kill", "qt", "whois", "music"]
-__handlers__ = [SING_HANDLER, KILL_HANDLER, TIP_HANDLER, WHOIS_HANDLER, WHOIS_HANDLER]
+__handlers__ = [SING_HANDLER, KILL_HANDLER, TIP_HANDLER, WHOIS_HANDLER, MUSIC_HANDLER]
