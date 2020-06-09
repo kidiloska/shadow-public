@@ -1,0 +1,16 @@
+shadow/config.py
+shadow/*.session
+shadow/*.session-journal
+shadow/config.ini
+*.pyc
+.idea/
+.project
+.pydevproject
+.directory
+.vscode
+shadow/modules/helper_funcs/temp.txt
+shadow/elevated_users.json
+start-3.6.bat
+*.session
+kangsticker.png
+venv
