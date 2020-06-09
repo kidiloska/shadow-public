@@ -232,6 +232,7 @@ __help__ = """
 ❀ /sing Short Malayalam Song Lyrics🎶
 ❀ /kill Short movie dialouges 😎
 ❀ /qt Malayalam Quotes ❤️
+❀ /whois Get user details 😎
 """
 
 
