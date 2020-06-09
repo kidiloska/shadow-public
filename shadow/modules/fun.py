@@ -19,6 +19,7 @@ def runs(bot: Bot, update: Update):
 
 @run_async
 def slap(bot: Bot, update: Update, args: List[str]):
+    bot.sendChatAction(update.effective_chat.id, "typing")
     message = update.effective_message
     chat = update.effective_chat
 
@@ -31,7 +32,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
         temp = random.choice(fun_strings.SLAP_SAITAMA_TEMPLATES)
 
         if isinstance(temp, list):
-            if temp[2] == "tmute":
+            if temp[5] == "tmute":
                 if is_user_admin(chat, message.from_user.id):
                     reply_text(temp[1])
                     return
@@ -42,7 +43,58 @@ def slap(bot: Bot, update: Update, args: List[str]):
         else:
             reply_text(temp)
         return
+    
+    
+    if user_id == 1197251658:
+        temp = random.choice(fun_strings.SLAP_MASTER_TEMPLATES)
 
+        if isinstance(temp, list):
+            if temp[5] == "tmute":
+                if is_user_admin(chat, message.from_user.id):
+                    reply_text(temp[1])
+                    return
+
+                mutetime = int(time.time() + 60)
+                bot.restrict_chat_member(chat.id, message.from_user.id, until_date=mutetime, can_send_messages=False)
+            reply_text(temp[0])
+        else:
+            reply_text(temp)
+        return
+    
+    
+    if user_id == 1229670652:
+        temp = random.choice(fun_strings.SLAP_ABHI_TEMPLATES)
+
+        if isinstance(temp, list):
+            if temp[5] == "tmute":
+                if is_user_admin(chat, message.from_user.id):
+                    reply_text(temp[1])
+                    return
+
+                mutetime = int(time.time() + 60)
+                bot.restrict_chat_member(chat.id, message.from_user.id, until_date=mutetime, can_send_messages=False)
+            reply_text(temp[0])
+        else:
+            reply_text(temp)
+        return
+    
+        
+    if user_id == 948968949:
+        temp = random.choice(fun_strings.SLAP_KANNAN_TEMPLATES)
+
+        if isinstance(temp, list):
+            if temp[5] == "tmute":
+                if is_user_admin(chat, message.from_user.id):
+                    reply_text(temp[1])
+                    return
+
+                mutetime = int(time.time() + 60)
+                bot.restrict_chat_member(chat.id, message.from_user.id, until_date=mutetime, can_send_messages=False)
+            reply_text(temp[0])
+        else:
+            reply_text(temp)
+        return
+    
     if user_id:
 
         slapped_user = bot.get_chat(user_id)
@@ -61,6 +113,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
     reply = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
 
     reply_text(reply, parse_mode=ParseMode.HTML)
+
 
 
 @run_async
