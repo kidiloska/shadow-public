@@ -16,40 +16,33 @@ from shadow.modules import ALL_MODULES
 from shadow.modules.helper_funcs.chat_status import is_user_admin
 from shadow.modules.helper_funcs.misc import paginate_modules
 
-PM_START_TEXT = """
-Hi {}, my name is {}! 
-I am an Anime themed group management bot.
-To add me to your group click ["HERE"](t.me/shadow?startgroup=botstart)
-You can find my list of available commands with /help.
+PM_START_TEXT = f"""
+Hey there! my name is *{dispatcher.bot.first_name}*. If you have any questions on how to use me, Click Help button.
 
-[Saitama's Repo](github.com/AnimeKaizoku/shadow) 
-See [Basic Configuration Checklist](t.me/OnePunchUpdates/29) on how to secure your group.
-The support group chat is at {}.
+I'm here to make your group management fun and easy!
+i have lots of handy features, such as flood control, a warning system, a note keeping system, and even replies on predetermined filters.
+Wanna Add me to your Group? Just click the button below!
 """
+buttons = [[
+InlineKeyboardButton(text="Add to Group 👥", url="t.me/skylee_bot?startgroup=true"),
+InlineKeyboardButton(text="Updates 📢", url="https://t.me/skyleeupdates")
+                  ]]
 
-HELP_STRINGS = """
-Hey there! My name is *{}*.
-I'm a Hero For Fun and help admins manage their groups with One Punch! Have a look at the following for an idea of some of \
+buttons += [[InlineKeyboardButton(text="Help & Commands ❔", callback_data="help_back")]]
+
+
+HELP_STRINGS = f"""
+Hello there! My name is *{dispatcher.bot.first_name}*.
+I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
 the things I can help you with.
 
 *Main* commands available:
- - /start: start the bot
- - /help: PM's you this message.
- - /help <module name>: PM's you info about that module.
- - /donate: information about how to donate!
- - /settings:
-   - in PM: will send you your settings for all supported modules.
+ × /start: Starts me, can be used to check i'm alive or no...
+ × /help: PM's you this message.
+ × /help <module name>: PM's you info about that module.
+ × /settings: in PM: will send you your settings for all supported modules.
    - in a group: will redirect you to pm, with all that chat's settings.
-
-
-{}
-And the following:
-""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
-
-DONATE_STRING = """Heya, glad to hear you want to donate!
-Saitama is hosted on one of Kaizoku's Servers and doesn't require any donations as of now but \
-You can donate to the original writer of the Base code, Paul
-There are two ways of supporting him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
+ \nClick on the buttons below to get documentation about specific modules!"""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -136,12 +129,12 @@ def start(bot: Bot, update: Update, args: List[str]):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_text(
-                PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), SUPPORT_CHAT),
-                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+            update.effective_message.reply_photo(
+            open('startpic.jpeg', 'rb'),
+            PM_START_TEXT, reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN, timeout=60)
     else:
-        update.effective_message.reply_text("Yo, whadup?")
+        update.effective_message.reply_text("Sending you a warm hi & wishing your day is a happy one!")
 
 
 # for test purposes
