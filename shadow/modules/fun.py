@@ -222,6 +222,6 @@ dispatcher.add_handler(GDNIGHT_HANDLER)
 
 
 __mod_name__ = "Fun"
-__command_list__ = ["runs", "dark", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
+__command_list__ = ["runs", "dark", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "goodmorning", "goodnight"]
 __handlers__ = [RUNS_HANDLER, DARK_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
-                DECIDE_HANDLER, TABLE_HANDLER]
+                DECIDE_HANDLER, TABLE_HANDLER, GDMORNING_HANDLER, GDNIGHT_HANDLER]
