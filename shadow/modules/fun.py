@@ -4,7 +4,7 @@ import time
 from typing import List
 
 from telegram import Bot, Update, ParseMode
-from telegram.ext import Filters, CommandHandler, run_async
+from telegram.ext import run_async
 
 import shadow.modules.fun_strings as fun_strings
 from shadow import dispatcher
@@ -15,17 +15,10 @@ from shadow.modules.helper_funcs.extraction import extract_user
 @run_async
 def runs(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(fun_strings.RUN_STRINGS))
-    
-@run_async
-def dark(bot: Bot, update: Update):
-    bot.sendChatAction(update.effective_chat.id, "typing")
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.DARK_STRINGS))
 
 
 @run_async
 def slap(bot: Bot, update: Update, args: List[str]):
-    bot.sendChatAction(update.effective_chat.id, "typing")
     message = update.effective_message
     chat = update.effective_chat
 
@@ -38,7 +31,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
         temp = random.choice(fun_strings.SLAP_SAITAMA_TEMPLATES)
 
         if isinstance(temp, list):
-            if temp[5] == "tmute":
+            if temp[2] == "tmute":
                 if is_user_admin(chat, message.from_user.id):
                     reply_text(temp[1])
                     return
@@ -49,58 +42,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
         else:
             reply_text(temp)
         return
-    
-    
-    if user_id == 1197251658:
-        temp = random.choice(fun_strings.SLAP_MASTER_TEMPLATES)
 
-        if isinstance(temp, list):
-            if temp[5] == "tmute":
-                if is_user_admin(chat, message.from_user.id):
-                    reply_text(temp[1])
-                    return
-
-                mutetime = int(time.time() + 60)
-                bot.restrict_chat_member(chat.id, message.from_user.id, until_date=mutetime, can_send_messages=False)
-            reply_text(temp[0])
-        else:
-            reply_text(temp)
-        return
-    
-    
-    if user_id == 1229670652:
-        temp = random.choice(fun_strings.SLAP_ABHI_TEMPLATES)
-
-        if isinstance(temp, list):
-            if temp[5] == "tmute":
-                if is_user_admin(chat, message.from_user.id):
-                    reply_text(temp[1])
-                    return
-
-                mutetime = int(time.time() + 60)
-                bot.restrict_chat_member(chat.id, message.from_user.id, until_date=mutetime, can_send_messages=False)
-            reply_text(temp[0])
-        else:
-            reply_text(temp)
-        return
-    
-        
-    if user_id == 948968949:
-        temp = random.choice(fun_strings.SLAP_KANNAN_TEMPLATES)
-
-        if isinstance(temp, list):
-            if temp[5] == "tmute":
-                if is_user_admin(chat, message.from_user.id):
-                    reply_text(temp[1])
-                    return
-
-                mutetime = int(time.time() + 60)
-                bot.restrict_chat_member(chat.id, message.from_user.id, until_date=mutetime, can_send_messages=False)
-            reply_text(temp[0])
-        else:
-            reply_text(temp)
-        return
-    
     if user_id:
 
         slapped_user = bot.get_chat(user_id)
@@ -119,7 +61,6 @@ def slap(bot: Bot, update: Update, args: List[str]):
     reply = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
 
     reply_text(reply, parse_mode=ParseMode.HTML)
-
 
 
 @run_async
@@ -168,22 +109,11 @@ def decide(bot: Bot, update: Update):
 def table(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.TABLE))
-    
-@run_async
-def goodnight(bot: Bot, update: Update):
-        reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.GOODNIGHT))
-
-@run_async
-def goodmorning(bot: Bot, update: Update):
-        reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.GOODMORNING))
 
 
 __help__ = """
  • `/runs`*:* reply a random string from an array of replies.
  • `/slap`*:* slap a user, or get slapped if not a reply.
- • `/Dark`*:* angry reply.
  • `/shrug`*:* get shrug XD.
  • `/table`*:* get flip/unflip :v.
  • `/decide`*:* Randomly answers yes/no/maybe
@@ -194,7 +124,6 @@ __help__ = """
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
-DARK_HANDLER = DisableAbleCommandHandler("dark", dark)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
 ROLL_HANDLER = DisableAbleCommandHandler("roll", roll)
 TOSS_HANDLER = DisableAbleCommandHandler("toss", toss)
@@ -203,11 +132,8 @@ BLUETEXT_HANDLER = DisableAbleCommandHandler("bluetext", bluetext)
 RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
-GDMORNING_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodmorning)"), goodmorning, friendly="goodmorning")
-GDNIGHT_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodnight)"), goodnight, friendly="goodnight")
 
 dispatcher.add_handler(RUNS_HANDLER)
-dispatcher.add_handler(DARK_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
 dispatcher.add_handler(ROLL_HANDLER)
 dispatcher.add_handler(TOSS_HANDLER)
@@ -216,11 +142,9 @@ dispatcher.add_handler(BLUETEXT_HANDLER)
 dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
-dispatcher.add_handler(GDMORNING_HANDLER)
-dispatcher.add_handler(GDNIGHT_HANDLER)
 
 
 __mod_name__ = "Fun"
-__command_list__ = ["runs", "dark", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "goodmorning", "goodnight"]
-__handlers__ = [RUNS_HANDLER, DARK_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
-                DECIDE_HANDLER, TABLE_HANDLER, GDMORNING_HANDLER, GDNIGHT_HANDLER]
+__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
+__handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
+                DECIDE_HANDLER, TABLE_HANDLER]
