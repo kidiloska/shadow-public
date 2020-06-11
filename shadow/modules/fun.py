@@ -4,7 +4,7 @@ import time
 from typing import List
 
 from telegram import Bot, Update, ParseMode
-from telegram.ext import run_async
+from telegram.ext import Filters, CommandHandler, run_async
 from telegram import ChatAction
 
 import shadow.modules.fun_strings as fun_strings
@@ -169,6 +169,16 @@ def decide(bot: Bot, update: Update):
 def table(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.TABLE))
+    
+@run_async
+def goodnight(bot: Bot, update: Update):
+        reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.GOODNIGHT))
+
+@run_async
+def goodmorning(bot: Bot, update: Update):
+        reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.GOODMORNING))
 
 
 __help__ = """
@@ -194,6 +204,8 @@ BLUETEXT_HANDLER = DisableAbleCommandHandler("bluetext", bluetext)
 RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
+GDMORNING_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodmorning)"), goodmorning, friendly="goodmorning")
+GDNIGHT_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodnight)"), goodnight, friendly="goodnight")
 
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(DARK_HANDLER)
@@ -205,6 +217,8 @@ dispatcher.add_handler(BLUETEXT_HANDLER)
 dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
+dispatcher.add_handler(GDMORNING_HANDLER)
+dispatcher.add_handler(GDNIGHT_HANDLER)
 
 
 __mod_name__ = "Fun"
