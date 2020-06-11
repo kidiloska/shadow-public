@@ -109,6 +109,16 @@ def decide(bot: Bot, update: Update):
 def table(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.TABLE))
+    
+@run_async
+def goodmorning(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.GOODMORNING))
+@run_async
+def goodnight(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.GOONDNIGHT))
+
 
 
 __help__ = """
@@ -132,6 +142,11 @@ BLUETEXT_HANDLER = DisableAbleCommandHandler("bluetext", bluetext)
 RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
+TABLE_HANDLER = DisableAbleCommandHandler("table", table)
+TABLE_HANDLER = DisableAbleCommandHandler("table", table)
+DMORNING_HANDLER = DisableAbleMessageHandler(Filters.text("goodmorning"), goodmorning, "goodmorning")
+GDNIGHT_HANDLER = DisableAbleMessageHandler(Filters.text("goodnight"), goodnight, "goodnight")
+
 
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
@@ -142,9 +157,11 @@ dispatcher.add_handler(BLUETEXT_HANDLER)
 dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
+dispatcher.add_handler(GDMORNING_HANDLER)
+dispatcher.add_handler(GDNIGHT_HANDLER)
 
 
 __mod_name__ = "Fun"
-__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
+__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "goodmorning", "goodnight"]
 __handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
-                DECIDE_HANDLER, TABLE_HANDLER]
+                DECIDE_HANDLER, TABLE_HANDLER, GDMORNING_HANDLER, GDNIGHT_HANDLER]
