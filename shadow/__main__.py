@@ -16,6 +16,8 @@ from shadow.modules import ALL_MODULES
 from shadow.modules.helper_funcs.chat_status import is_user_admin
 from shadow.modules.helper_funcs.misc import paginate_modules
 
+
+
 PM_START_TEXT = """
 
 hii my name is Ｓｈａｄｏｗ 😁
@@ -64,6 +66,8 @@ DATA_EXPORT = []
 
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
+
+img = " https://telegra.ph/file/2fffcb924bc3305528034.jpg"
 
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("shadow.modules." + module_name)
