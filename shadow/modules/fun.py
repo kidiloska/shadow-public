@@ -1,5 +1,6 @@
 import html
-import random
+import random, re
+import requests as r
 import time
 from typing import List
 
@@ -111,15 +112,18 @@ def table(bot: Bot, update: Update):
     reply_text(random.choice(fun_strings.TABLE))
     
 @run_async
-def goodmorning(bot: Bot, update: Update):
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.GOODMORNING))
+def goodnight(update, context):
+    message = update.effective_message
+    reply = random.choice(fun.GDNIGHT)
+    message.reply_text(reply,
+    parse_mode=ParseMode.MARKDOWN)
+
 @run_async
-def goodnight(bot: Bot, update: Update):
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.GOONDNIGHT))
-
-
+def goodmorning(update, context):
+    message = update.effective_message
+    reply = random.choice(fun.GDMORNING)
+    message.reply_text(reply,
+    parse_mode=ParseMode.MARKDOWN)
 
 __help__ = """
  • `/runs`*:* reply a random string from an array of replies.
@@ -144,8 +148,8 @@ DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
-GDMORNING_HANDLER = DisableAbleMessageHandler("goodmorning", goodmorning)
-GDNIGHT_HANDLER = DisableAbleMessageHandler("goodnight", goodnight)
+GDMORNING_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodmorning)"), goodmorning, friendly="goodmorning")
+GDNIGHT_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodnight)"), goodnight, friendly="goodnight")
 
 
 dispatcher.add_handler(RUNS_HANDLER)
