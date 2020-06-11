@@ -1,6 +1,5 @@
 import html
 import random
-import requests as r
 import time
 from typing import List
 
@@ -145,8 +144,8 @@ DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
-GDMORNING_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodmorning)"),"goodmorning" goodmorning)
-GDNIGHT_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(goodnight)"),"goodnight" goodnight)
+GDMORNING_HANDLER = DisableAbleMessageHandler("goodmorning", goodmorning)
+GDNIGHT_HANDLER = DisableAbleMessageHandler("goodnight", goodnight)
 
 
 dispatcher.add_handler(RUNS_HANDLER)
