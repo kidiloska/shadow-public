@@ -6,13 +6,13 @@ from telegram.ext import Filters, CommandHandler, run_async
 from telegram.error import BadRequest
 from telegram.utils.helpers import mention_html, escape_markdown
 
-from skylee.modules.helper_funcs.extraction import extract_user
-from skylee.modules.helper_funcs.filters import CustomFilters
-from skylee.modules.helper_funcs.alternate import typing_action
-from skylee import dispatcher, SUDO_USERS, SUPPORT_USERS, WALL_API, TOKEN, LOGGER
-from skylee.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
+from shadow.modules.helper_funcs.extraction import extract_user
+from shadow.modules.helper_funcs.filters import CustomFilters
+from shadow.modules.helper_funcs.alternate import typing_action
+from shadow import dispatcher, SUDO_USERS, SUPPORT_USERS, WALL_API, TOKEN, LOGGER
+from shadow.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 
-import skylee.modules.helper_funcs.fun_strings as fun
+import shadow.modules.helper_funcs.fun_strings as fun
 
 @run_async
 @typing_action
@@ -371,12 +371,12 @@ Some dank memes for fun or whatever!
 
 *Regex based memes:*
 
-`/decide` can be also used with regex like: `skylee? <question>: randomly answer "Yes, No" etc.`
+`/decide` can be also used with regex like: `shadow? <question>: randomly answer "Yes, No" etc.`
 
 Some other regex filters are:
 `me too` | `goodmorning` | `goodnight`.
 
-Skylee will reply random strings accordingly when these words are used!
+shadow will reply random strings accordingly when these words are used!
 All regex filters can be disabled incase u don't want... like: `/disable metoo`.
 
 """
@@ -384,7 +384,7 @@ All regex filters can be disabled incase u don't want... like: `/disable metoo`.
 __mod_name__ = "Memes"
 
 SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug)
-DECIDE_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)^skylee\?"), decide, friendly="decide")
+DECIDE_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)^shadow\?"), decide, friendly="decide")
 SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter)
 ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse)
 PORT_BUG_HANDLER = CommandHandler("bug", ports_bug)
