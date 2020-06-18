@@ -2,6 +2,7 @@ import html
 import random
 import time
 from typing import List
+import requests
 
 from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
@@ -11,6 +12,7 @@ from shadow import dispatcher
 from shadow.modules.disable import DisableAbleCommandHandler
 from shadow.modules.helper_funcs.chat_status import is_user_admin, user_admin
 from shadow.modules.helper_funcs.extraction import extract_user
+
 
 @run_async
 def runs(bot: Bot, update: Update):
@@ -100,10 +102,33 @@ def rlg(bot: Bot, update: Update):
     update.message.reply_text(repl)
 
 
+#@run_async
+#def decide(bot: Bot, update: Update):
+   # reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    #reply_text(random.choice(fun_strings.DECIDE))
+    
+    @run_async
+def decide(update, context):
+    args = update.effective_message.text.split(None, 1)
+    if len(args) >= 2: # Don't reply if no args
+       reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+       reply_text(random.choice(fun_strings.DECIDE))
+
 @run_async
-def decide(bot: Bot, update: Update):
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.DECIDE))
+def yesnowtf(update, context):
+    msg = update.effective_message
+    chat = update.effective_chat
+    res = r.get("https://yesno.wtf/api")
+    if res.status_code != 200:
+       return msg.reply_text(random.choice(fun_strings.DECIDE))
+    else:
+       res = res.json()
+    try:
+       context.bot.send_animation(chat.id,
+       animation=res["image"],
+       caption=str(res["answer"]).upper())
+    except BadRequest:
+           return
 
 @run_async
 def table(bot: Bot, update: Update):
