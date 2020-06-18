@@ -2,7 +2,7 @@ import html
 import random
 import time
 from typing import List
-import requests
+import requests as r
 
 from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
