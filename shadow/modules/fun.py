@@ -2,7 +2,7 @@ import html
 import random
 import time
 from typing import List
-import requests as r
+import requests 
 
 from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
@@ -102,50 +102,38 @@ def rlg(bot: Bot, update: Update):
     update.message.reply_text(repl)
 
 
-#@run_async
-#def decide(bot: Bot, update: Update):
-   # reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    #reply_text(random.choice(fun_strings.DECIDE))
-    
-    @run_async
-def decide(update, context):
-    args = update.effective_message.text.split(None, 1)
-    if len(args) >= 2: # Don't reply if no args
-       reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-       reply_text(random.choice(fun_strings.DECIDE))
-
 @run_async
-def yesnowtf(update, context):
-    msg = update.effective_message
-    chat = update.effective_chat
-    res = r.get("https://yesno.wtf/api")
-    if res.status_code != 200:
-       return msg.reply_text(random.choice(fun_strings.DECIDE))
-    else:
-       res = res.json()
-    try:
-       context.bot.send_animation(chat.id,
-       animation=res["image"],
-       caption=str(res["answer"]).upper())
-    except BadRequest:
-           return
+def decide(bot: Bot, update: Update):
+   reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.DECIDE))
+
 
 @run_async
 def table(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.TABLE))
-
+    
+@run_async
+def cat(bot: Bot, update: Update):
+    msg = update.effective_message
+    hug = requests.get("https://some-random-api.ml/img/cat").json()
+    link = hug.get("link")
+    if not link:
+        msg.reply_text("No URL was received from the API!")
+        return
+    msg.reply_video(link)
 
 __help__ = """
- • `/runs`*:* reply a random string from an array of replies.
- • `/slap`*:* slap a user, or get slapped if not a reply.
- • `/shrug`*:* get shrug XD.
- • `/table`*:* get flip/unflip :v.
- • `/decide`*:* Randomly answers yes/no/maybe
- • `/toss`*:* Tosses A coin
- • `/bluetext`*:* check urself :V
- • `/roll`*:* Roll a dice.
- • `/rlg`*:* Join ears,nose,mouth and create an emo ;-;
+ • /runs *:* reply a random string from an array of replies.
+ • /slap *:* slap a user, or get slapped if not a reply.
+ • /shrug *:* get shrug XD.
+ • /table *:* get flip/unflip :v.
+ • /decide *:* Randomly answers yes/no/maybe
+ • /toss *:* Tosses A coin
+ • /bluetext *:* check urself :V
+ • /roll *:* Roll a dice.
+ • /rlg *:* Join ears,nose,mouth and create an emo ;-;
+ • /cat *:* Join ears,nose,mouth and create an emo ;-;
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
@@ -157,6 +145,7 @@ BLUETEXT_HANDLER = DisableAbleCommandHandler("bluetext", bluetext)
 RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
+CAT_HANDLER = DisableAbleCommandHandler("cat", cat)
 
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
@@ -167,9 +156,10 @@ dispatcher.add_handler(BLUETEXT_HANDLER)
 dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
+dispatcher.add_handler(CAT_HANDLER)
 
 
 __mod_name__ = "Fun"
-__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
+__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "cat"]
 __handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
-                DECIDE_HANDLER, TABLE_HANDLER]
+                DECIDE_HANDLER, TABLE_HANDLER, CAT_HANDLER]
