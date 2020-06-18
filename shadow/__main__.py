@@ -20,22 +20,24 @@ from shadow.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
 
-hii my name is Ｓｈａｄｏｗ 😁
+hii my name is Aʅιƈҽ 😁
+I'm here to make your group management fun and easy!
+i have lots of handy features, such as flood control, a warning system, a note keeping system, and even replies on predetermined filters.
 
-i can manage your telegram groups 😎 
-To add me to your group click [𝗵𝗲𝗿𝗲](t.me/Mr_Gen3ral_bot?startgroup=botstart)
-
-You can find my list of available commands with /help
+/help to find out more about how to use me to my full potential.
 
 conatact my [𝗼𝘄𝗻𝗲𝗿](t.me/kannappan04) 🕵️‍♂️
 """
 
 HELP_STRINGS = """
 ╔----------+
-     ╔══╦╗────╔╗
-     ║══╣╚╦═╗╔╝╠═╦╦╦╗
-     ╠══║║║╬╚╣╬║╬║║║║
-     ╚══╩╩╩══╩═╩═╩══╝
+
+    ┏━━━┳┓
+    ┃┏━┓┃┃
+    ┃┃╋┃┃┃┏┳━━┳━━┓
+    ┃┗━┛┃┃┣┫┏━┫┃━┫
+    ┃┏━┓┃┗┫┃┗━┫┃━┫
+    ┗┛╋┗┻━┻┻━━┻━━┛
 -------------------------+
 
 Hey there! My name is *{}*.
@@ -51,7 +53,7 @@ the things I can help you with.
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-KIGYO_IMG = "https://telegra.ph/file/2fffcb924bc3305528034.jpg"
+KIGYO_IMG = "https://telegra.ph/file/d94c38522caf0fc27bdeb.jpg"
 
 DONATE_STRING = """I'm free for everyone!! """
 
