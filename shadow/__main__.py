@@ -67,8 +67,6 @@ DATA_EXPORT = []
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
-img = " https://telegra.ph/file/2fffcb924bc3305528034.jpg"
-
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("shadow.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
@@ -142,11 +140,11 @@ def start(bot: Bot, update: Update, args: List[str]):
             elif args[0][1:].isdigit() and "rules" in IMPORTED:
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
-            else:
+        else:
             first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="❓ Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text=" 👥 Support Chat.",url="https://telegram.dog/allukatm")],  
-                                                [InlineKeyboardButton(text=" Add in your Group",url="http://t.me/zoldycktmbot?startgroup=true"),InlineKeyboardButton(text="Website",url="meanii.me")]]))
+            update.effective_message.reply_text(
+                PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), SUPPORT_CHAT),
+                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
     else:
         update.effective_message.reply_text("Yo, whadup?")
 
@@ -456,3 +454,4 @@ def main():
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     main()
+
