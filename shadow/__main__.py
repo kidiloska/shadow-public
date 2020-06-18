@@ -22,7 +22,7 @@ PM_START_TEXT = """
 
 hii my name is Ｓｈａｄｏｗ 😁
 
-i can manage your telegram groups 😎  [;)](https://telegra.ph/file/2fffcb924bc3305528034.jpg)
+i can manage your telegram groups 😎 
 To add me to your group click [𝗵𝗲𝗿𝗲](t.me/Mr_Gen3ral_bot?startgroup=botstart)
 
 You can find my list of available commands with /help
@@ -52,8 +52,6 @@ And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 KIGYO_IMG = "https://telegra.ph/file/2fffcb924bc3305528034.jpg"
-
-KIGYO_IMG = "https://telegra.ph/file/e5100e06c03767af80023.jpg"
 
 DONATE_STRING = """I'm free for everyone!! """
 
@@ -145,7 +143,7 @@ def start(bot: Bot, update: Update, args: List[str]):
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(KIGYO_IMG,
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
-                parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add Kigyō to your group",
+                parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me to your group",
                                                                        url="t.me/{}?startgroup=true".format(bot.username))]]))
     else:
         update.effective_message.reply_text("Yo, whadup?")
