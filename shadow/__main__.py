@@ -145,9 +145,10 @@ def start(bot: Bot, update: Update, args: List[str]):
         else:
             first_name = update.effective_user.first_name
             
-              buttons = InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me to your group", url="t.me/{}?startgroup=true".format(bot.username))]],
-                                                                                   [[InlineKeyboardButton(text="Contact Owner", url="https://t.me/kannappan04")]],
-                                                                                   [[InlineKeyboardButton(text="Help & Commands ❔", callback_data="help_back")]])
+              b            buttons = InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="👥 Add Lynda to your group", url="https://t.me/LyndaRobot?startgroup=new")],
+                [InlineKeyboardButton(text="🙋 Support Group", url="https://t.me/LyndaEagleSupport"), InlineKeyboardButton(text="🚫 Global Logs", url="https://t.me/LyndaGLogs")],
+                [InlineKeyboardButton(text="❔ Help", callback_data="help_back"), InlineKeyboardButton(text="🔔 Update Channel", url="https://t.me/LyndaUpdates")]])
                 
             update.effective_message.reply_photo(KIGYO_IMG,
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
