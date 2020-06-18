@@ -116,12 +116,12 @@ def table(bot: Bot, update: Update):
 @run_async
 def cat(bot: Bot, update: Update):
     msg = update.effective_message
-    hug = requests.get("https://some-random-api.ml/img/cat").json()
-    link = hug.get("link")
+    cat = requests.get("https://some-random-api.ml/img/cat").json()
+    link = cat.get("link")
     if not link:
         msg.reply_text("No URL was received from the API!")
         return
-    msg.reply_video(link)
+    msg.reply_photo(link)
 
 __help__ = """
  • /runs *:* reply a random string from an array of replies.
