@@ -21,6 +21,7 @@ from shadow.modules.helper_funcs.misc import paginate_modules
 PM_START_TEXT = """
 
 hii my name is Aʅιƈҽ 😁
+
 I'm here to make your group management fun and easy!
 i have lots of handy features, such as flood control, a warning system, a note keeping system, and even replies on predetermined filters.
 
@@ -145,8 +146,10 @@ def start(bot: Bot, update: Update, args: List[str]):
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(KIGYO_IMG,
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
-                parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me to your group",
-                                                                       url="t.me/{}?startgroup=true".format(bot.username))]]))
+                  parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me to your group",
+                                        url="t.me/{}?startgroup=true".format(bot.username))]],
+                    [[InlineKeyboardButton(text="Contact Owner", url="https://t.me/kannappan04")]],
+                                    [[InlineKeyboardButton(text="Help & Commands ❔", callback_data="help_back")]])
     else:
         update.effective_message.reply_text("Yo, whadup?")
 
