@@ -22,7 +22,7 @@ PM_START_TEXT = """
 
 hii my name is Ｓｈａｄｏｗ 😁
 
-i can manage your telegram groups 😎  
+i can manage your telegram groups 😎  [;)](https://telegra.ph/file/2fffcb924bc3305528034.jpg)
 To add me to your group click [𝗵𝗲𝗿𝗲](t.me/Mr_Gen3ral_bot?startgroup=botstart)
 
 You can find my list of available commands with /help
@@ -50,6 +50,8 @@ the things I can help you with.
 
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
+
+KIGYO_IMG = "https://telegra.ph/file/2fffcb924bc3305528034.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
 Saitama is hosted on one of Kaizoku's Servers and doesn't require any donations as of now but \
