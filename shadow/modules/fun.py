@@ -112,15 +112,6 @@ def table(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.TABLE))
     
-@run_async
-def cat(bot: Bot, update: Update):
-    msg = update.effective_message
-    cat = requests.get("https://some-random-api.ml/img/cat").json()
-    link = cat.get("link")
-    if not link:
-        msg.reply_text("No URL was received from the API!")
-        return
-    msg.reply_photo(link)
 
 __help__ = """
  • /runs *:* reply a random string from an array of replies.
@@ -132,7 +123,6 @@ __help__ = """
  • /bluetext *:* check urself :V
  • /roll *:* Roll a dice.
  • /rlg *:* Join ears,nose,mouth and create an emo ;-;
- • /cat *:* Join ears,nose,mouth and create an emo ;-;
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
