@@ -12,7 +12,6 @@ from shadow.modules.disable import DisableAbleCommandHandler
 from shadow.modules.helper_funcs.chat_status import is_user_admin, user_admin
 from shadow.modules.helper_funcs.extraction import extract_user
 
-
 @run_async
 def runs(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(fun_strings.RUN_STRINGS))
@@ -103,26 +102,25 @@ def rlg(bot: Bot, update: Update):
 
 @run_async
 def decide(bot: Bot, update: Update):
-   reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.DECIDE))
-
 
 @run_async
 def table(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(fun_strings.TABLE))
-    
+
 
 __help__ = """
- • /runs *:* reply a random string from an array of replies.
- • /slap *:* slap a user, or get slapped if not a reply.
- • /shrug *:* get shrug XD.
- • /table *:* get flip/unflip :v.
- • /decide *:* Randomly answers yes/no/maybe
- • /toss *:* Tosses A coin
- • /bluetext *:* check urself :V
- • /roll *:* Roll a dice.
- • /rlg *:* Join ears,nose,mouth and create an emo ;-;
+ • `/runs`*:* reply a random string from an array of replies.
+ • `/slap`*:* slap a user, or get slapped if not a reply.
+ • `/shrug`*:* get shrug XD.
+ • `/table`*:* get flip/unflip :v.
+ • `/decide`*:* Randomly answers yes/no/maybe
+ • `/toss`*:* Tosses A coin
+ • `/bluetext`*:* check urself :V
+ • `/roll`*:* Roll a dice.
+ • `/rlg`*:* Join ears,nose,mouth and create an emo ;-;
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
