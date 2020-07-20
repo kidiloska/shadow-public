@@ -4,7 +4,7 @@ A modular Telegram Python bot running on python3 with a sqlalchemy database.
 
 Originally a Marie fork, Saitama evolved further and was built to be more robust and more dedicated to Anime Chats. 
 
-Can be found on telegram as [shadow](https://t.me/shadow).
+Can be found on telegram as [mis_isabellabot](https://t.me/Mis_isabellabot).
 
 The Support group can be reached out to at [One Punch Support](https://t.me/OnePunchSupport), where you can ask for help about @shadow, discover/request new features, report bugs, and stay in the loop whenever a new update is available. 
 
